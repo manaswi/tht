@@ -1,4 +1,18 @@
 Tht::Application.routes.draw do
+
+  resources :recipes do
+    get :autocomplete_tag_name, :on => :collection
+    resources :steps do
+      resources :step_ingredients
+    end
+  end
+
+  root :to => 'static_pages#home'
+
+  get 'tags/:tag', to: 'recipes#index', as: :tag
+  match '/about', to: 'static_pages#about'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
