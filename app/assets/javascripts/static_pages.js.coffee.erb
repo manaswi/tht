@@ -1,0 +1,5 @@
+$(document).ready ->
+  colors = ["red", "blue", "green", "yellow", "brown", "black"]
+  $("#recipe_title").typeahead
+    minLength: 1
+    source: colors

@@ -1,0 +1,22 @@
+p
+  strong 
+    |Steps:
+ol
+  -@recipe.steps.each do |step|
+    .row-fluid  
+      .span2.step-ing
+        ol.unstyled
+          -step.step_ingredients.each do |s_i|
+            table.table-hover.table-condensed
+              tr
+                td
+                  = best_in_place s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                td
+                  = best_in_place s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                td
+                  = best_in_place s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                
+      .span4.recipe-steps
+        table.table-hover.table-condensed
+          td= best_in_place step, :step_no, :path => recipe_step_path(@recipe, step)
+          td= best_in_place step, :description, :path => recipe_step_path(@recipe, step)

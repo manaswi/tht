@@ -1,0 +1,14 @@
+-title @recipe.title, false
+
+h2 = best_in_place @recipe, :title
+
+== render 'rec_header'
+== render 'edit_tags'
+
+== render 'rec_steps'
+
+p =="#{link_to "Edit", edit_recipe_path(@recipe)} \
+    | #{link_to "Destroy", @recipe, :confirm => 'Are you sure?',\
+    :method => :delete} \
+    | #{link_to "View All", recipes_path}"
+

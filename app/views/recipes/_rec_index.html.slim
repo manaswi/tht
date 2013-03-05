@@ -1,0 +1,36 @@
+#tag_cloud.center.well
+  - tag_cloud @recipes.tag_counts, %w{s m l} do |tag, css_class|
+    =link_to tag.name, tag_path(tag.name), class: css_class
+    '
+.row-fluid
+  .span4
+    h3 My Recipes
+    table.table.table-striped
+      tr
+        th Title
+        th Description
+      - @recipes.each do |recipe|
+        tr
+          td=link_to recipe.title, recipe
+          td=recipe.description
+          / td=link_to "Edit", edit_recipe_path(recipe) 
+          / td=link_to "Destroy", recipe, confirm: 'Are you sure?', method: :delete
+
+    =link_to "New Recipe", new_recipe_path
+
+  .span4
+    h3 All other recipes
+    table.table.table-striped
+      tr
+        th Title
+        th Description
+        th User
+      - @allrecipes.each do |recipe|
+        tr
+          td=link_to recipe.title, recipe
+          td=recipe.description
+          td=recipe.user.username
+          / td=link_to "Edit", edit_recipe_path(recipe) 
+          / td=link_to "Destroy", recipe, confirm: 'Are you sure?', method: :delete
+
+    / =link_to "New Recipe", new_recipe_path

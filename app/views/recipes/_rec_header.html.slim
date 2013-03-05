@@ -1,0 +1,23 @@
+#recipe_header.well
+  dl.dl-horizontal.text-info
+    dt Description
+    dd = best_in_place @recipe, :description, type: :textarea
+    dt Tags
+    / dd = raw @recipe.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') 
+    dd 
+      ol.unstyled
+        li= best_in_place @recipe, :tag_list, :type => :input, html_attrs: { "data-autocomplete" => autocomplete_tag_name_recipes_path, :'data-delimiter' => ', ' }
+        
+        / f.input :tag_list, :label => "Tags (separated by commas)", :url => autocomplete_tag_name_recipes_path, :as => :autocomplete, input_html: { :'data-delimiter' => ', '}
+
+        /:url => autocomplete_tag_name_recipes_path, :as => :autocomplete, input_html: { :'data-delimiter' => ', '}
+
+        
+        /this was the tag list with clickable links... not needed on the rec details page...
+        / li= raw @recipe.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') 
+        / li
+        
+
+        /this was a button to kick in the modal
+        /   <a href="#EditTags" role="button" class="btn" data-toggle="modal" data-remote= true> Edit tags</a>
+          /button_to "#EditTags" class="btn" data-toggle="modal", "Edit Tags"

@@ -1,0 +1,5 @@
+-unless user_signed_in?
+  |this is where the signin form will be
+  = render '/devise/sessions/new'
+-else
+  |We will have the sidebar content for signed in user here.
