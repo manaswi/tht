@@ -19,9 +19,9 @@
         h1 thoughts for food!
         h2 the resource for {and created by} the chef in all of us
         .center
-          <a href='/sign_up' class="btn btn-large btn-primary">Sign up now!</a>
+          link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary"
     aside.span3
       section
         h3 please sign in
       section
-        =render 'devise/sessions/sign_in'
+        =render '/signin'
