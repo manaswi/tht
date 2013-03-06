@@ -1,0 +1,10 @@
+-title @user.username
+
+.row
+  aside.span4
+    section
+      h1
+        =gravatar_for @user
+        =@user.email
+
+= link_to "Edit Profile", edit_user_url

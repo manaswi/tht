@@ -1,0 +1,15 @@
+-title "All Users"
+
+table.table-striped.table-condensed
+  thead
+    tr
+      th Username
+      th email
+  tbody  
+    -@users.each do |user|
+      tr
+        td= link_to user.username, user
+        td= user.email
+        td= link_to 'Edit', edit_user_path(user)
+        td= link_to 'Destroy', user, confirm: 'Are you sure?',method: :delete
+    =will_paginate @users

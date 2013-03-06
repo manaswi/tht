@@ -13,8 +13,8 @@ html
 
     #container-fluid
     
-      -flash.each do |name, msg|
-        = content_tag(:div, msg, :id => "flash_#{name}", class: "alert error-#{name}")
+      -flash.each do |key, value|
+        = content_tag(:div, value, :id => "flash_#{key}", class: "alert alert-#{key}")
       
       = content_tag :h1, yield(:title) if show_title?
     

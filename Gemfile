@@ -22,9 +22,9 @@ gem "cancan"
 #gem 'sunspot_rails'
 gem 'turbolinks'
 gem 'simple_form'
-#gem 'client_side_validations'
-#gem 'client_side_validations-simple_form'
-#gem 'client_side_validations-turbolinks'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+gem 'client_side_validations-turbolinks'
 gem 'nested_form'
 
 

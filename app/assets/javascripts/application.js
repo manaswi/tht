@@ -22,4 +22,8 @@
 // Loads all Bootstrap javascripts
 //= require bootstrap
 //= require turbolinks
+//= require rails.validations
+//= require rails.validations.simple_form
+//= require rails.validations.turbolinks
+//= require rails.validations.nested_form
 //= require_tree .
