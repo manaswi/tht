@@ -10,13 +10,33 @@ ol
             table.table-hover.table-condensed
               tr
                 td
-                  = best_in_place s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                  -if can? :manage, @recipe
+                    = best_in_place s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                  -else
+                    = s_i.quantity
                 td
-                  = best_in_place s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                  -if can? :manage, @recipe
+                    = best_in_place s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                  -else
+                    = s_i.unit
                 td
-                  = best_in_place s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                  -if can? :manage, @recipe
+                    = best_in_place s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+                  -else
+                    = s_i.ingredient
                 
       .span4.recipe-steps
         table.table-hover.table-condensed
-          td= best_in_place step, :step_no, :path => recipe_step_path(@recipe, step)
-          td= best_in_place step, :description, :path => recipe_step_path(@recipe, step)
+          td
+            -if can? :manage, @recipe
+              = best_in_place step, :step_no, :path => recipe_step_path(@recipe, step)
+            -else
+              = step.step_no
+          td
+            #step
+              -if can? :manage, @recipe
+                = best_in_place step, :description, :path => recipe_step_path(@recipe, step)
+              -else
+                = step.description
+            #step_summary
+              = best_in_place step, :summary, :path => recipe_step_path(@recipe, step)

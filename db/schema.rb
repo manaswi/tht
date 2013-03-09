@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130308211530) do
+ActiveRecord::Schema.define(:version => 20130309045147) do
+
+  create_table "assignments", :force => true do |t|
+    t.string   "user_id"
+    t.string   "role_id"
+    t.datetime "assignment_date"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "recipes", :force => true do |t|
     t.string   "title"
@@ -22,6 +30,12 @@ ActiveRecord::Schema.define(:version => 20130308211530) do
   end
 
   add_index "recipes", ["user_id"], :name => "index_recipes_on_user_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "step_ingredients", :force => true do |t|
     t.decimal  "quantity",   :precision => 6, :scale => 2
@@ -64,9 +78,10 @@ ActiveRecord::Schema.define(:version => 20130308211530) do
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "remember_token"
+    t.boolean  "admin",           :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

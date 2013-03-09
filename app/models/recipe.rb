@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :text
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Recipe < ActiveRecord::Base
   attr_accessible :title, :description, :uesr_id, :steps_attributes, :tag_list #, :label_tags_attributes
   acts_as_taggable_on :tags

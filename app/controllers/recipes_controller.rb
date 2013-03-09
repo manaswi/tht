@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  #before_filter :authenticate_user!
+  before_filter :signed_in_user, only: [:edit, :create, :update]
+  load_and_authorize_resource
   autocomplete :tag, :name, :full => true, :class_name => 'ActsAsTaggableOn::Tag'
   #autocomplete :step_ingredient, :ingredient, :full => true#, :class_name => 'ActsAsTaggableOn::Tag'
   respond_to :html, :json
@@ -17,7 +18,9 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+  end
+
+  def edit
   end
 
   def new
@@ -40,16 +43,8 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit
-    @recipe = Recipe.find(params[:id])
-  end
-
   def update
-    @recipe = Recipe.find(params[:id])
-    # @recipe.update_attributes(params[:recipe])
-    # respond_with @recipe
     respond_to do |format|
-    
       if @recipe.update_attributes(params[:recipe])
         format.html { redirect_to(@recipe, :notice => 'Recipe was successfully updated.') }
         format.json { respond_with_bip(@recipe) }
@@ -61,8 +56,14 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to recipes_url, :notice => "Successfully destroyed recipe."
   end
+
+  private
+
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
 end

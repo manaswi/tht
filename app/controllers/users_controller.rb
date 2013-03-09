@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  
+  before_filter :signed_in_user
+  load_and_authorize_resource
+
   def new
     @user = User.new
   end
@@ -42,4 +44,11 @@ class UsersController < ApplicationController
     flash[:success] = "User destroyed"
     redirect_to users_url
   end
+
+  private
+
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
 end

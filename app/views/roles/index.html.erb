@@ -1,0 +1,15 @@
+<% title "Roles" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for role in @roles %>
+    <tr>
+      <td><%= role.name %></td>
+      <td><%= link_to "Destroy", role, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Role", new_role_path %></p>
