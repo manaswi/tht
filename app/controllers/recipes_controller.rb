@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   autocomplete :tag, :name, :full => true, :class_name => 'ActsAsTaggableOn::Tag'
   #autocomplete :step_ingredient, :ingredient, :full => true#, :class_name => 'ActsAsTaggableOn::Tag'
   respond_to :html, :json

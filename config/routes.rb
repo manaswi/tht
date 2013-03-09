@@ -1,7 +1,8 @@
 Tht::Application.routes.draw do
 
   resources :users
-
+  resources :sessions, only: [:new, :create, :destroy]
+  
   resources :recipes do
     get :autocomplete_tag_name, :on => :collection
     resources :steps do
@@ -12,6 +13,9 @@ Tht::Application.routes.draw do
   root :to => 'static_pages#home'
 
   match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout',  to: 'sessions#destroy', via: :delete
+
 
   get 'tags/:tag', to: 'recipes#index', as: :tag
   match '/about', to: 'static_pages#about'

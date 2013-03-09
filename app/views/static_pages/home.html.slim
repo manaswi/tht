@@ -9,7 +9,8 @@
         /= render 'shared/micropost_form'
         |will render something else
     .span9
-      h3 =current_user.username
+      h3= current_user.username
+
       /= render 'recipes/rec_index'
 
 - else
@@ -19,9 +20,9 @@
         h1 thoughts for food!
         h2 the resource for {and created by} the chef in all of us
         .center
-          link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary"
+          =link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary"
     aside.span3
       section
         h3 please sign in
       section
-        =render '/signin'
+        =render '/sessions/signin'

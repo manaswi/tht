@@ -8,6 +8,7 @@ header.navbar.navbar-fixed-top.navbar-inverse
       </a>
  
       = link_to "ThotFood", root_path, id: "logo"
+      
       .nav-collapse.collapse
         nav
           ul.nav.pull-right
@@ -18,8 +19,6 @@ header.navbar.navbar-fixed-top.navbar-inverse
                 |Account
                 b.caret 
               ul.dropdown-menu
-                li reg items 
-                /render 'devise/menu/registration_items'
+                li= render 'layouts/shared/menu/registration_items'
                 li.divider
-                li login items
-                /render 'devise/menu/login_items'
+                li= render 'layouts/shared/menu/login_items'
