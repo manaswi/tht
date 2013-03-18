@@ -13,10 +13,13 @@
 #
 
 class User < ActiveRecord::Base 
-  attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :username, :email, :password, :password_confirmation, :step_summaries_attributes
 
   has_secure_password
   has_many :recipes
+  has_many :step_summaries
+  has_many :steps, through: :step_summaries
+
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

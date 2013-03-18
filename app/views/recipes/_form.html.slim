@@ -9,8 +9,11 @@
     = f.simple_fields_for :steps do |steps_form|
       .row-fluid
         .span6
-          = steps_form.input :step_no
-          = steps_form.input :description, :label => "Step", input_html: { rows: 3 }
+          .row-fluid
+            .span2
+              = steps_form.input :step_no
+            .span10
+              = steps_form.input :description, :label => "Step", input_html: { rows: 3 }
           = steps_form.link_to_remove do
             i.icon-trash __
         .span6.well

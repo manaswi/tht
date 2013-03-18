@@ -1,9 +1,14 @@
 -title @recipe.title, false
 
 h2 = best_in_place @recipe, :title
+blockquote
+  p
+    -if can? :manage, @recipe
+      =best_in_place @recipe, :description, type: :textarea
+    -else
+      =@recipe.description
 
 == render 'rec_header'
-== render 'edit_tags'
 
 == render 'rec_steps'
 

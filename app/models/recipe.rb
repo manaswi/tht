@@ -11,11 +11,13 @@
 #
 
 class Recipe < ActiveRecord::Base
-  attr_accessible :title, :description, :uesr_id, :steps_attributes, :tag_list #, :label_tags_attributes
+  attr_accessible :title, :description, :uesr_id, :steps_attributes, :tag_list
   acts_as_taggable_on :tags
   belongs_to :user
   has_many :steps, :dependent => :destroy
   has_many :step_ingredients, :through => :steps
+  has_many :step_summaries, :through => :steps
+
   accepts_nested_attributes_for :steps,
           :reject_if => lambda { |a| a[:description].blank? },
           :allow_destroy => true

@@ -1,8 +1,11 @@
 Tht::Application.routes.draw do
 
+  #resources :step_summaries
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  
+  resources :step_summaries, only: [:new, :create, :destroy]
+
   resources :recipes do
     get :autocomplete_tag_name, :on => :collection
     resources :steps do

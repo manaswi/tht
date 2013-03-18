@@ -18,6 +18,10 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @user = current_user
+    #@recipe = Recipe.find(params[:recipe])
+    @steps = @recipe.steps
+    @step_summaries = StepSummary.where(step_id: @recipe.steps, user_id: current_user.id)
   end
 
   def edit

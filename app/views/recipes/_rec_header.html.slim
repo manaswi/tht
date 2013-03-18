@@ -1,16 +1,28 @@
 #recipe_header.well
-  dl.dl-horizontal.text-info
-    dt Description
-    dd 
-      -if can? :manage, @recipe
-        =best_in_place @recipe, :description, type: :textarea
-      -else
-        =@recipe.description
-    dt Tags
-    dd 
-      ol.unstyled
-        -if can? :manage, @recipe
-          li= best_in_place @recipe, :tag_list, :type => :input, html_attrs: { "data-autocomplete" => autocomplete_tag_name_recipes_path, :'data-delimiter' => ', ' }
-        -else
-          li= @recipe.tag_list.join(', ')
+  .row-fluid
+    .span5
+      dl.dl-horizontal.text-info
+        dt Tags
+        dd 
+          ol.unstyled
+            -if can? :manage, @recipe
+              li= best_in_place @recipe, :tag_list, :type => :input, html_attrs: { "data-autocomplete" => autocomplete_tag_name_recipes_path, :'data-delimiter' => ', ' }
+            -else
+              li= @recipe.tag_list.join(', ')
+        dt Prep time
+        dd Placeholder
+        dt Cooking time
+        dd Placeholder
+        dt Chef's Designation
+        dd Placeholder - evolving, 
+        dt My Rating
+        dd Placeholder - scale of 1 to 10
+    .span3          
+      strong Ingredients
+      ul
+        -@recipe.step_ingredients.each do |s_i|
+          li #{s_i.quantity} #{s_i.unit} #{s_i.ingredient}
+    .span4
+      =image_tag 'rails.png' 
+
 / dd = raw @recipe.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') 

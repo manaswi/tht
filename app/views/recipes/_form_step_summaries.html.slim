@@ -1,0 +1,8 @@
+.form
+  /=simple_form_for @user do |f|
+    /=f.simple_fields_for :steps do |stepsform|
+  =simple_form_for :step_summary do |step_summaries_form|
+    = step_summaries_form.input :summary, :placeholder => 'Add your summary', :label => false
+    = step_summaries_form.input :step_id, :label => false
+    = step_summaries_form.input :user_id, :label => false
+    = step_summaries_form.submit

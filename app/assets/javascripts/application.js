@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.core
 //= require jquery.ui.autocomplete
+//= require jquery.ui.all
 //= require jquery_nested_form
 //= require jquery.purr
 //= require best_in_place
