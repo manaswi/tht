@@ -46,10 +46,12 @@ gem 'haml2slim'
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
-  gem 'wdm', '~> 0.0.3'
   gem 'guard-spork', '1.2.0'
   gem 'spork', '0.9.2'
   gem 'annotate', '2.5.0'
+  if RUBY_PLATFORM =~ /win32/
+    gem 'wdm', '~> 0.0.3'
+  end
 end
 
 
@@ -69,9 +71,16 @@ gem "best_in_place"
 
 group :test do
   gem 'capybara', '1.1.2'
-  gem 'rb-fchange', '0.0.5'
-  gem 'rb-notifu', '0.0.4'
-  gem 'win32console', '1.3.0'
+
+  if RUBY_PLATFORM =~ /win32/
+    gem 'rb-fchange', '0.0.5'
+    gem 'rb-notifu', '0.0.4'
+    gem 'win32console', '1.3.0'
+  else
+    gem 'rb-inotify', '0.8.8'
+    gem 'libnotify', '0.5.9'
+  end
+
   gem 'factory_girl_rails', '4.1.0'
   gem 'database_cleaner', '0.7.0'
   gem 'mocha', :require => false
