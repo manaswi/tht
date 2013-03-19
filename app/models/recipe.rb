@@ -13,6 +13,8 @@
 class Recipe < ActiveRecord::Base
   attr_accessible :title, :description, :uesr_id, :steps_attributes, :tag_list
   acts_as_taggable_on :tags
+  acts_as_commentable
+  
   belongs_to :user
   has_many :steps, :dependent => :destroy
   has_many :step_ingredients, :through => :steps

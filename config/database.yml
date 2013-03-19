@@ -4,13 +4,13 @@ development:
   database: tht_development
   host: localhost
   pool: 5
-  username: manaswi
-  password: pepper
+  username: dbtiger
+  password: pypy
 
 test:
   adapter: postgresql
   encoding: unicode
   database: tht_test
   pool: 5
-  username: manaswi
-  password: pepper
+  username: dbtiger
+  password: pypy

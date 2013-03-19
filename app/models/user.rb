@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :recipes
   has_many :step_summaries
   has_many :steps, through: :step_summaries
+  has_many :comments
 
 
   before_save { |user| user.email = email.downcase }

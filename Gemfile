@@ -26,6 +26,7 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'client_side_validations-turbolinks'
 gem 'nested_form'
+gem 'acts_as_commentable_with_threading'
 
 
 group :development do

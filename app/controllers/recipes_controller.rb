@@ -22,6 +22,9 @@ class RecipesController < ApplicationController
     #@recipe = Recipe.find(params[:recipe])
     @steps = @recipe.steps
     @step_summaries = StepSummary.where(step_id: @recipe.steps, user_id: current_user.id)
+    @comments = @recipe.comment_threads.order('created_at desc')
+    @new_comment = Comment.build_from(@recipe, @user.id, "")
+    #may be add pagination or AJAX to load more...
   end
 
   def edit
