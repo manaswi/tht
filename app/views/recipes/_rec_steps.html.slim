@@ -16,17 +16,8 @@
             .span2 = best_in_place_if (can? :manage, @recipe), s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
             .span4 = best_in_place_if (can? :manage, @recipe), s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
             .span6 = best_in_place_if (can? :manage, @recipe), s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
-              / -step.step_ingredients.each do |s_i|
-              /   table.table-hover.table-condensed
-              /     tr
-              /       td
-              /         = best_in_place_if (can? :manage, @recipe), s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
-              /       td
-              /         =best_in_place_if (can? :manage, @recipe), s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
-              /       td
-              /         = best_in_place_if (can? :manage, @recipe), s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)      
+                
     .span6.recipe-steps
-      /table.table-hover.table-condensed
       .span1
         = best_in_place_if (can? :manage, @recipe), step, :step_no, :path => recipe_step_path(@recipe, step)
       .span6.original_steps
