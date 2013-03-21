@@ -1,8 +1,8 @@
 class StepSummariesController < ApplicationController
 respond_to :html, :json
+load_and_authorize_resource
 
   def update
-    @step_summary = StepSummary.find(params[:id])
     @step_summary.update_attributes(params[:step_summary])
     respond_with @recipe
   end

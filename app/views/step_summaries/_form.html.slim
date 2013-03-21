@@ -1,0 +1,19 @@
+#step_summaries_modal class="modal hide fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
+  .step-summaries-form
+    .modal-header
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Create your summary</h3>
+    .modal-body
+      |form here
+      =simple_form_for :step_summary, :url => recipe_step_step_summaries_path, :input_html => {:method => :post} do |f|
+        = f.input :summary
+        = f.input :user_id, :value => current_user.id
+        = f.input :step_id
+        .modal-footer
+          button.btn data-dismiss="modal" aria-hidden="true" Close
+          = f.button :submit
+          /, :value => "Save summary"
+          
+          / = simple_form_for @step_summary do |f|
+          / = f.input :summary, :input_html => { :rows => "1" }, :label => false, placeholder: "Add your summary"
+          /= f.button :submit, :disable_with => "Submitting…"

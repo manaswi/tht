@@ -21,6 +21,7 @@ class RecipesController < ApplicationController
     @user = current_user
     #@recipe = Recipe.find(params[:recipe])
     @steps = @recipe.steps
+    @step_ingredients = StepIngredient.where(step_id: @recipe.steps)
     @step_summaries = StepSummary.where(step_id: @recipe.steps, user_id: current_user.id)
     @comments = @recipe.comment_threads.order('created_at desc')
     @new_comment = Comment.build_from(@recipe, @user.id, "")

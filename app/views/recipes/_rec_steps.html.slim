@@ -7,40 +7,35 @@
       button type="button" class="btn active" id='tgl_user_steps' My Steps
 
 
-ol
-  -@steps.each do |step|
-    .row-fluid  
-      .span3.step-ing
-        ol.unstyled
-          -step.step_ingredients.each do |s_i|
-            table.table-hover.table-condensed
-              tr
-                td
-                  = best_in_place_if (can? :manage, @recipe), s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
-                td
-                  =best_in_place_if (can? :manage, @recipe), s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
-                td
-                  = best_in_place_if (can? :manage, @recipe), s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
-                
-                
-      .span6.recipe-steps
-        /table.table-hover.table-condensed
-        .row-fluid
-          .span1
-            = best_in_place_if (can? :manage, @recipe), step, :step_no, :path => recipe_step_path(@recipe, step)
-          .span6.original_steps
-              = best_in_place_if (can? :manage, @recipe), step, :description, :path => recipe_step_path(@recipe, step)
-          .span5.user_steps
-            -@step_summaries.each do |step_summary|
-              -if step_summary.step_id == step.id
-                = best_in_place step_summary, :summary, :path => recipe_step_step_summary_path(@recipe, step, step_summary)
-              -else
-                == render 'form_step_summaries'
-            / -step.step_summaries.each do |step_summary|
-            /   -unless step_summary.user_id == current_user.id
-            /     |No summary...
-            /   -else
-            /     = best_in_place step_summary, :summary, :path => recipe_step_step_summary_path(@recipe, step, step_summary)
-
-
-
+-@steps.each do |step|
+  .row-fluid  
+    .span3.step-ing
+      ol.unstyled
+        -step.step_ingredients.each do |s_i|
+          li
+            .span2 = best_in_place_if (can? :manage, @recipe), s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+            .span4 = best_in_place_if (can? :manage, @recipe), s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+            .span6 = best_in_place_if (can? :manage, @recipe), s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+              / -step.step_ingredients.each do |s_i|
+              /   table.table-hover.table-condensed
+              /     tr
+              /       td
+              /         = best_in_place_if (can? :manage, @recipe), s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+              /       td
+              /         =best_in_place_if (can? :manage, @recipe), s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+              /       td
+              /         = best_in_place_if (can? :manage, @recipe), s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)      
+    .span6.recipe-steps
+      /table.table-hover.table-condensed
+      .span1
+        = best_in_place_if (can? :manage, @recipe), step, :step_no, :path => recipe_step_path(@recipe, step)
+      .span6.original_steps
+        = best_in_place_if (can? :manage, @recipe), step, :description, :path => recipe_step_path(@recipe, step)
+      .span5.user_steps
+        -@step_summaries.each do |s_s|
+          -if (s_s.step_id == step.id) 
+            = best_in_place s_s, :summary, path: recipe_step_step_summary_path(@recipe, step, s_s)
+          -else
+            = step.description
+            /== render 'form_step_summaries'
+        

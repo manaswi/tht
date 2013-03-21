@@ -10,7 +10,7 @@ Tht::Application.routes.draw do
     get :autocomplete_tag_name, :on => :collection
     resources :steps do
       resources :step_ingredients
-      resources :step_summaries, only: [:new, :create, :destroy]
+      resources :step_summaries, only: [:new, :create, :destroy, :update]
     end
   end
 

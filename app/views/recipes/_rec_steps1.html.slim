@@ -1,0 +1,41 @@
+.row-fluid
+  p.span2
+    strong 
+      'Steps: 
+    .btn-group data-toggle="buttons-checkbox"
+      button type="button" class="btn active" id='tgl_original_steps' Original
+      button type="button" class="btn active" id='tgl_user_steps' My Steps
+
+.row-fluid
+  -@steps.each do |step|
+    .span2.step-ing
+      ol.unstyled
+        -@step_ingredients.each do |s_i|
+          li
+            .span2 = best_in_place_if (can? :manage, @recipe), s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+            .span4 = best_in_place_if (can? :manage, @recipe), s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+            .span6 = best_in_place_if (can? :manage, @recipe), s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, step, s_i)
+    .span5.recipe-steps
+      ol.unstyled
+        li 
+          .span2
+            = best_in_place_if (can? :manage, @recipe), step, :step_no, :path => recipe_step_path(@recipe, step)
+          .span5.original_steps
+              = best_in_place_if (can? :manage, @recipe), step, :description, :path => recipe_step_path(@recipe, step)
+          .span5.user-steps
+            /=best_in_place_if (@step_summary == step), @step_summary, :summary, path: recipe_step_step_summary_path(@recipe, step) 
+            -@step_summaries.each do |s_s|
+              -if (s_s.step_id == step.id) 
+                = best_in_place s_s, :summary, path: recipe_step_step_summary_path(@recipe, step, s_s)
+
+
+
+
+      /   table.table-hover.table-condensed
+      /     tr
+      /       td
+      /         = best_in_place_if (can? :manage, @recipe), s_i, :quantity, :path => recipe_step_step_ingredient_path(@recipe, s_i)
+      /       td
+      /         =best_in_place_if (can? :manage, @recipe), s_i, :unit, :path => recipe_step_step_ingredient_path(@recipe, s_i)
+      /       td
+      /         = best_in_place_if (can? :manage, @recipe), s_i, :ingredient, :path => recipe_step_step_ingredient_path(@recipe, s_i)
