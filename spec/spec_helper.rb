@@ -40,4 +40,19 @@ RSpec.configure do |config|
 end
 Spork.each_run do
   # This code will be run each time you run your specs.
+  RSpec.configure do |config|
+
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+  end
 end
