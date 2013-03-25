@@ -14,7 +14,7 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
     if user && user.authenticate(params[:session][:password])
       sign_in user
-      redirect_to user
+      redirect_to root_url
     else
       flash.now[:error] = 'Invalid username or password'
       render 'new'

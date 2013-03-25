@@ -4,8 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  summary    :text
-#  user_id    :string(255)
-#  step_id    :string(255)
+#  user_id    :integer
+#  step_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

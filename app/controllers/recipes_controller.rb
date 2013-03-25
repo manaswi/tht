@@ -8,12 +8,16 @@ class RecipesController < ApplicationController
   def index
     if params[:tag]
       @user = current_user
-      @recipes = Recipe.tagged_with(params[:tag])
-      @allrecipes = Recipe.tagged_with(params[:tag]).where('user_id != ?', current_user.id)
+      @recipes = @user.recipes.tagged_with(params[:tag])
+      @followed_recipes = Recipe.where(user_id: @user.followed_users).tagged_with(params[:tag])
+      @all_recipes = Recipe.tagged_with(params[:tag]).where('user_id != ?', current_user.id)
+      @other_recipes = (@all_recipes - @followed_recipes).tagged_with(params[:tag])
     else
       @user = current_user
       @recipes = @user.recipes
-      @allrecipes = Recipe.where('user_id != ?', current_user.id)
+      @followed_recipes = Recipe.where(user_id: @user.followed_users)
+      @all_recipes = Recipe.where('user_id != ?', current_user.id)
+      @other_recipes = (@all_recipes - @followed_recipes)
     end
   end
 

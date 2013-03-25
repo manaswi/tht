@@ -1,21 +1,19 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user
-  load_and_authorize_resource
+  before_filter :signed_in_user, except: :new
+  load_and_authorize_resource except: :new
 
   def new
     @user = User.new
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def index
-    @users = User.paginate(page: params[:page], :per_page => 5)
+    @users = User.paginate(page: params[:page], :per_page => 10)
   end
 
   def create
-    @user = User.new(params[:user])
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to ThotFood!"
@@ -26,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
@@ -43,6 +40,20 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed"
     redirect_to users_url
+  end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private

@@ -1,3 +1,16 @@
 -title "Recipes", false
 
-=render 'rec_index'
+#tag_cloud.center.well
+  - tag_cloud @recipes.tag_counts, %w{s m l} do |tag, css_class|
+    =link_to tag.name, tag_path(tag.name), class: css_class
+    '
+.row-fluid
+  .span4
+    == render 'my_recipes'
+
+    =link_to "New Recipe", new_recipe_path
+
+  .span4
+    == render 'followed_recipes'
+  .span4
+    == render 'other_recipes'

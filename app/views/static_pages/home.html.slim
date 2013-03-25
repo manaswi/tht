@@ -5,12 +5,12 @@
       section
         /= render 'shared/user_info'
         |will render something
+        =render "shared/stats"
       section
         /= render 'shared/micropost_form'
         |will render something else
     .span9
       h3= current_user.username
-
       /= render 'recipes/rec_index'
 
 - else

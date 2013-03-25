@@ -1,0 +1,4 @@
+= form_for(current_user.relations.build(followed_id: @user.id, followed_obj: 'User'), remote: true) do |f|
+  = f.hidden_field :followed_id
+  = f.hidden_field :followed_obj
+  = f.submit "Follow", class: "btn btn-large btn-primary"

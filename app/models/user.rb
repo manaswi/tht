@@ -48,8 +48,8 @@ class User < ActiveRecord::Base
     relations.find_by_followed_id(other_user.id)
   end
 
-  def follow!(other_user)
-    relations.create!(followed_id: other_user.id)
+  def follow!(other_user, obj)
+    relations.create!(followed_id: other_user.id, followed_obj: obj)
   end
 
   def unfollow!(other_user)

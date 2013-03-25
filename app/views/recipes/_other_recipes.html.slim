@@ -1,0 +1,11 @@
+h3 Other recipes
+table.table.table-striped
+  tr
+    th Title
+    th Description
+    th User
+  - @other_recipes.each do |recipe|
+    tr
+      td=link_to recipe.title, recipe
+      td=recipe.description
+      td=link_to recipe.user.username, recipe.user

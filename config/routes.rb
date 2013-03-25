@@ -7,8 +7,10 @@ Tht::Application.routes.draw do
       get :following, :followers
     end
   end
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :comments, :only => [:create, :destroy]
+  resources :relations, only: [:create, :destroy]
 
   resources :recipes do
     get :autocomplete_tag_name, :on => :collection

@@ -1,0 +1,11 @@
+h3 Followed recipes
+table.table.table-striped
+  tr
+    th Title
+    th Description
+    th User
+  - @followed_recipes.each do |recipe|
+    tr
+      td=link_to recipe.title, recipe
+      td=recipe.description
+      td=recipe.user.username
