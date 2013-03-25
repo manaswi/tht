@@ -2,15 +2,10 @@
 h3= @user.username
 .row-fluid
   aside.span3
-    section
-      h1
-        =gravatar_for @user
-        =@user.username
-    section
-      =render 'shared/stats'
+    == render 'shared/user_info'
   .span9
     =render 'follow_form' if signed_in?
     =render 'recipes/my_recipes'
 
-= if can? :update, @user
+-if can? :update, @user
   =link_to "Edit Profile", edit_user_url

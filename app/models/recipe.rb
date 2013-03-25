@@ -11,6 +11,9 @@
 #
 
 class Recipe < ActiveRecord::Base
+
+  include PublicActivity::Common
+  
   attr_accessible :title, :description, :uesr_id, :steps_attributes, :tag_list
   acts_as_taggable_on :tags
   acts_as_commentable

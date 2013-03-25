@@ -1,0 +1,7 @@
+|commented on 
+-if activity.trackable
+  =link_to Recipe.find(activity.trackable.commentable_id).title, Recipe.find(activity.trackable.commentable_id)
+  |  by 
+  =link_to Recipe.find(activity.trackable.commentable_id).user.username, Recipe.find(activity.trackable.commentable_id).user
+-else
+  |a recipe, but either the comment or the recipe has since been removed

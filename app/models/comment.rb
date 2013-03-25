@@ -19,6 +19,9 @@
 #comment.rb 
 
 class Comment < ActiveRecord::Base
+
+  include PublicActivity::Common
+  
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
   validates :body, presence: true

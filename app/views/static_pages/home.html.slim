@@ -1,17 +1,15 @@
 - if signed_in?
-  -title current_user.username
+  -title current_user.username, false
   .row-fluid
+    .span9
+      = render 'recipes/my_recipes'
     aside.span3
       section
-        /= render 'shared/user_info'
-        |will render something
-        =render "shared/stats"
+        h3 =current_user.username
+        = gravatar_for current_user
+        = render 'shared/stats'
       section
-        /= render 'shared/micropost_form'
-        |will render something else
-    .span9
-      h3= current_user.username
-      /= render 'recipes/rec_index'
+        = render 'activities/activities_feed'
 
 - else
   .row-fluid

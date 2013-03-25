@@ -6,11 +6,12 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :read, Recipe
-      can :manage, User, :user_id => user.id
+      can :read, :all #[Recipe, User, Comment]
+      can :manage, User, :id => user.id
       can :manage, Recipe, :user_id => user.id
       can :manage, StepSummary
-      #can :manage, Comment, :user_id => user.id
+      can :manage, Comment, :user_id => user.id
+      can :manage, Relation, :user_id => user.id
     end
   end
 end

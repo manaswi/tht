@@ -11,6 +11,9 @@
 #
 
 class Relation < ActiveRecord::Base
+
+  include PublicActivity::Common
+  
   attr_accessible :followed_id, :followed_obj
 
   belongs_to :follower, class_name: "User"

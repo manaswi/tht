@@ -1,7 +1,5 @@
 Tht::Application.routes.draw do
 
-  #resources :step_summaries
-
   resources :users do
     member do
       get :following, :followers
@@ -11,6 +9,8 @@ Tht::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :comments, :only => [:create, :destroy]
   resources :relations, only: [:create, :destroy]
+  resources :activities
+
 
   resources :recipes do
     get :autocomplete_tag_name, :on => :collection

@@ -12,6 +12,9 @@
 #
 
 class Step < ActiveRecord::Base
+
+  include PublicActivity::Common
+  
   attr_accessible :step_no, :description, :recipe_id, :step_ingredients_attributes,
            :step_summaries_attributes
   default_scope order('step_no ASC')

@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, except: :new
-  load_and_authorize_resource except: :new
+  before_filter :signed_in_user, except: [:new, :create]
+  load_and_authorize_resource except: [:new, :create]
 
   def new
     @user = User.new
   end
 
   def show
+    #@user = User.find(params[:id])
   end
 
   def index
@@ -14,12 +15,13 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.new(params[:user])
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to ThotFood!"
-      redirect_to @user
+      redirect_to root_path
     else
-      render 'new'
+      render 'signup'
     end
   end
 

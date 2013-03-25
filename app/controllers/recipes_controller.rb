@@ -49,6 +49,7 @@ class RecipesController < ApplicationController
     @recipe = @user.recipes.build(params[:recipe])
     if @recipe.save
       flash[:success] = "Hee-Haw - Recipe created, now go make the dish!"
+      @recipe.create_activity :create, owner: current_user
       redirect_to @recipe
     else
       render 'new'
@@ -60,6 +61,7 @@ class RecipesController < ApplicationController
       if @recipe.update_attributes(params[:recipe])
         format.html { redirect_to(@recipe, :notice => 'Recipe was successfully updated.') }
         format.json { respond_with_bip(@recipe) }
+        @recipe.create_activity :update, owner: current_user
       else
         format.html { render :action => "edit" }
         format.json { respond_with_bip(@recipe) }
