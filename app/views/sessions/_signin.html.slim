@@ -1,6 +1,6 @@
-=simple_form_for(:session, url: sessions_path) do |f|
-  =f.input :username, required: false
-  =f.input :password, required: false
-  =f.submit 'Sign in', class: 'btn btn-large btn-primary'
-
-p New user? #{link_to "Sign up now!", signup_path}
+/ <%= form_for(:session, url: sessions_path) do |f|
+form.form-inline
+  = simple_form_for(:session, url: sessions_path) do |f|
+    =f.input :username, required: false
+    =f.input :password, required: false
+    =f.submit 'Sign in', class: 'btn btn-large btn-primary'

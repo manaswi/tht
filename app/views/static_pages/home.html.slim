@@ -18,9 +18,9 @@
         h1 thoughts for food!
         h2 the resource for {and created by} the chef in all of us
         .center
-          =link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary"
+          =link_to "Take a tour!", '#', class: "btn btn-large"
     aside.span3
       section
-        h3 please sign in
+        h3 New user? Signup now!
       section
-        =render '/sessions/signin'
+        =render '/users/form'

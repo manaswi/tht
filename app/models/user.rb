@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :step_summaries_attributes
 
   has_secure_password
+
+  include PublicActivity::Common
+
   has_many :recipes
   has_many :step_summaries
   has_many :steps, through: :step_summaries

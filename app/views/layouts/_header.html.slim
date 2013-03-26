@@ -1,24 +1,51 @@
 header.navbar.navbar-fixed-top.navbar-inverse
   .navbar-inner
     .container
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
- 
       = link_to "ThotFood", root_path, id: "logo"
+      -if signed_in?
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>  
+          <span class="icon-bar"></span>
+        </a>
+ 
+        .nav-collapse.collapse
+          nav
+            ul.nav.pull-right
+              li= link_to "Home", root_path
+              li= link_to "Recipes", recipes_path
+              li#fat-menu.dropdown
+                a.dropdown-toggle href="#"  data-toggle="dropdown"
+                  |Account
+                  b.caret 
+                ul.dropdown-menu
+                  li= render 'layouts/shared/menu/registration_items'
+                  li.divider
+                  li= render 'layouts/shared/menu/login_items'
+      -else
+        #signin.pull-right
+          = form_for(:session, url: sessions_path) do |f|
+            .span2
+              = f.text_field :username, placeholder: "Username or Email"
+            .span2
+              = f.password_field :password, placeholder: "Password"
+            .span2
+              = f.submit "Sign in", class: "btn btn-primary"
+
+
+
+        / <form action="/sessions" method="post" class="navbar-form pull-right" accept-charset="UTF-8">
+        /     <input type="text" class="span3" placeholder="Username or Email">
+        /     <input type="text" class="span3" placeholder="Password">
+        /     <input type="hidden" value="the_csrf_token" name="authenticity_token" id="tokentag">
+        /     <input type="submit" value="Login" class="btn"/>
+        / </form>
+
+
+      /   form.navbar-form.pull-right
+      /     =form_for(:session, url: sessions_path) do |f|
+      /       =f.text_field :username, required: false
+      /       =f.text_field :password, required: false
+      /       =f.submit 'Sign in', class: 'btn btn-large btn-primary'
+      / / == render 'sessions/signin'
       
-      .nav-collapse.collapse
-        nav
-          ul.nav.pull-right
-            li= link_to "Home", root_path
-            li= link_to "Recipes", recipes_path
-            li#fat-menu.dropdown
-              a.dropdown-toggle href="#"  data-toggle="dropdown"
-                |Account
-                b.caret 
-              ul.dropdown-menu
-                li= render 'layouts/shared/menu/registration_items'
-                li.divider
-                li= render 'layouts/shared/menu/login_items'

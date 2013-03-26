@@ -5,6 +5,7 @@ class RelationsController < ApplicationController
     @user = User.find(params[:relation][:followed_id])
     @obj = params[:relation][:followed_obj]
     current_user.follow!(@user, @obj)
+    current_user.create_activity action: 'follow', params: {id: @user.id}, recipient: @user, owner: current_user
     respond_to do |format|
       format.html { redirect_to @user }
       format.js

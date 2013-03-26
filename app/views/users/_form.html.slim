@@ -1,8 +1,6 @@
-.row-fluid
-  .span6.offset3
-    =simple_form_for @user, :validate => true do |f|
-      =f.input :username, required: false
-      =f.input :email , required: false
-      =f.input :password , required: false
-      =f.input :password_confirmation , required: false
-      =f.submit 'Create my account', class: 'btn btn-large btn-primary'
+=simple_form_for @user, :validate => true do |f|
+  =f.input :username, required: false
+  =f.input :email , required: false
+  =f.input :password , required: false
+  =f.input :password_confirmation , required: false
+  =f.submit 'Create my account', class: 'btn btn-large btn-primary'
