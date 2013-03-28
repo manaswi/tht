@@ -6,6 +6,7 @@ h3= @user.username
   .span9
     =render 'follow_form' if signed_in?
     =render 'recipes/my_recipes'
+    =render 'thoughts/thoughts'
 
 -if can? :update, @user
   =link_to "Edit Profile", edit_user_url

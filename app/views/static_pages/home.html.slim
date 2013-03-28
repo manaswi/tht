@@ -5,9 +5,11 @@
       = render 'recipes/my_recipes'
     aside.span3
       section
-        h3 =current_user.username
+        h3 =link_to current_user.username, current_user
         = gravatar_for current_user
         = render 'shared/stats'
+      section
+        = render 'thoughts/form'
       section
         = render 'activities/activities_feed'
 

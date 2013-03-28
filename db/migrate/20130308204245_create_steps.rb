@@ -8,5 +8,6 @@ class CreateSteps < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :steps, :recipe_id
   end
 end

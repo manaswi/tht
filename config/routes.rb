@@ -1,10 +1,12 @@
 Tht::Application.routes.draw do
 
+
   resources :users do
     member do
       get :following, :followers
     end
   end
+  resources :thoughts
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :comments, :only => [:create, :destroy]

@@ -21,6 +21,7 @@ gem "cancan"
 
 #gem 'sunspot_rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
@@ -28,7 +29,7 @@ gem 'client_side_validations-turbolinks'
 gem 'nested_form'
 gem 'acts_as_commentable_with_threading'
 gem 'public_activity'
-
+gem "friendly_id", "~> 4.0.9"
 
 group :development do
   gem 'nifty-generators'

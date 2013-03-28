@@ -1,0 +1,20 @@
+Rails Gurus:
+Here is a view issue that I have been butting my head against. Perhaps the collective wisdom here can help more efficiently than my hit and trial approach so far - given my limited Rails exposure.
+
+Models:
+
+ - User - has many Recipes and Step_summaries
+ - Recipe - has many steps, belongs to User
+ - Step - has many Step_summaries, belongs to Recipe
+ - Step_summary - belongs to User, belongs to Step
+
+In the view Step and Step Summaries are edited in place using the best_in_place gem. Recipe owners can edit steps, any user can create/edit a step summary. The current_user can choose to see either the Original Steps or his own Summaries(or both, done via javascript). The issue is, that the current_user will typically only summarize some steps of any given recipe, not all.
+
+Here is what I want to accomplish - 
+In the Original Steps column, show the original steps.
+In the User Summaries column:
+
+ - Show the summary if it exists 
+ - Show the original step if it does not
+
+

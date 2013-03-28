@@ -18,11 +18,14 @@ class User < ActiveRecord::Base
   has_secure_password
 
   include PublicActivity::Common
+  extend FriendlyId
+  friendly_id :username
 
   has_many :recipes
-  has_many :step_summaries
+  has_many :step_summaries, dependent: :destroy
   has_many :steps, through: :step_summaries
   has_many :comments
+  has_many :thoughts, dependent: :destroy
 
   has_many :relations, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relations, source: :followed

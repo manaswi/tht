@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
+    @thoughts = @user.thoughts
   end
 
   def index
@@ -57,11 +58,5 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
-
-  private
-
-    def signed_in_user
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
-    end
 
 end

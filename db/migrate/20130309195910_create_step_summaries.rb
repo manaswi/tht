@@ -7,5 +7,7 @@ class CreateStepSummaries < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :step_summaries, :user_id
+    add_index :step_summaries, :step_id
   end
 end

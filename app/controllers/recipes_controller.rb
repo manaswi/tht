@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :create, :update]
+  before_filter :signed_in_user, only: [:edit, :create, :update, :destroy]
   load_and_authorize_resource
   autocomplete :tag, :name, :full => true, :class_name => 'ActsAsTaggableOn::Tag'
   #autocomplete :step_ingredient, :ingredient, :full => true#, :class_name => 'ActsAsTaggableOn::Tag'
@@ -72,6 +72,10 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     redirect_to recipes_url, :notice => "Successfully destroyed recipe."
+  end
+
+  def to_param
+    title
   end
 
   private
